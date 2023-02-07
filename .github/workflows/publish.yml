@@ -31,7 +31,8 @@ jobs:
       - name: Assert
         shell: bash
         run: |
-          echo "meta: ${{ steps.meta.outputs.meta }}"
+          echo "name: ${{ steps.meta.outputs.name }}"
+          echo "tags: ${{ steps.meta.outputs.tags }}"
         
       # Compile dist/index.js and bundle with action.yml
       # Force push major and minor meta, e.g. v1, v1.0

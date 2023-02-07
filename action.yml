@@ -47,7 +47,7 @@ runs:
         fi
 
         if [ -z "$IMAGE_VERSION" ]; then
-          IMAGE_VERSION=$(echo ${GITHUB_REF} | sed -e "s%refs/meta/%%g")
+          IMAGE_VERSION=$(echo ${GITHUB_REF} | sed -e "s%refs/tags/%%g")
         fi
 
         IMAGE_FULL_NAME=${USERNAME}/${IMAGE_NAME}
