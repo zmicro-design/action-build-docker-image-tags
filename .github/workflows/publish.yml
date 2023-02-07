@@ -2,7 +2,7 @@ name: Publish
 
 on:
   push:
-    meta:
+    tags:
       - 'v*'
 
 jobs:
