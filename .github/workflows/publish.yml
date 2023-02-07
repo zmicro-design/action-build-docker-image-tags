@@ -2,7 +2,7 @@ name: Publish
 
 on:
   push:
-    tags:
+    meta:
       - 'v*'
 
 jobs:
@@ -18,23 +18,23 @@ jobs:
       - name: Get Release Info
         id: releaser
         run: |
-          version=$(echo ${GITHUB_REF} | sed -e "s%refs/tags/%%g")
+          version=$(echo ${GITHUB_REF} | sed -e "s%refs/meta/%%g")
           echo "version=${version}" >> $GITHUB_OUTPUT
 
       - name: Install and Build
         run: yarn && yarn build
 
       - name: Test Setup
-        id: tags
+        id: meta
         uses: ./
 
       - name: Assert
         shell: bash
         run: |
-          echo "tags: ${{ steps.tags.outputs.tags }}"
+          echo "meta: ${{ steps.meta.outputs.meta }}"
         
       # Compile dist/index.js and bundle with action.yml
-      # Force push major and minor tags, e.g. v1, v1.0
+      # Force push major and minor meta, e.g. v1, v1.0
       # See documentation: https://github.com/JasonEtco/build-and-tag-action
       - uses: JasonEtco/build-and-tag-action@v2
         with:

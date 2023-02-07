@@ -1,5 +1,5 @@
-name: 'Build Docker Image Tags with Zmicro'
-description: 'github action for build docker image tags with Zmicro'
+name: 'Build Docker Image Meta with Zmicro'
+description: 'github action for build docker image meta with Zmicro'
 author: 'Zero <GitHub: whatwewant>'
 branding:
   icon: 'message-square'
@@ -16,9 +16,13 @@ inputs:
     description: custom docker registry username, default from github repository username
   
 outputs:
+  name:
+    description: 'Image Name'
+    value: ${{ steps.meta.outputs.name }}
+  
   tags:
-    description: 'Random number'
-    value: ${{ steps.tags.outputs.tags }}
+    description: 'Image Tags'
+    value: ${{ steps.meta.outputs.tags }}
 
 runs:
   using: composite
@@ -26,9 +30,9 @@ runs:
     - name: Setup Zmicro
       uses: zmicro-design/action-setup-zmicro@v1
 
-    - name: Build Docker Image Tags CLI
+    - name: Build Docker Image Meta
       shell: zmicro {0}
-      id: tags
+      id: meta
       run: |
         USERNAME=${{ inputs.username }}
         IMAGE_NAME=${{ inputs.name }}
@@ -43,10 +47,11 @@ runs:
         fi
 
         if [ -z "$IMAGE_VERSION" ]; then
-          IMAGE_VERSION=$(echo ${GITHUB_REF} | sed -e "s%refs/tags/%%g")
+          IMAGE_VERSION=$(echo ${GITHUB_REF} | sed -e "s%refs/meta/%%g")
         fi
 
         IMAGE_FULL_NAME=${USERNAME}/${IMAGE_NAME}
         IMAGE_TAGS=$(tag::docker $IMAGE_FULL_NAME $IMAGE_VERSION)
 
+        echo "name=${IMAGE_FULL_NAME}" >> $GITHUB_OUTPUT
         echo "tags=${IMAGE_TAGS}" >> $GITHUB_OUTPUT
