@@ -1,13 +1,13 @@
 {
-  "name": "@zmicro-design/action-build-docker-image-meta",
-  "version": "1.0.1",
+  "name": "@zmicro-design/action-docker-image-meta",
+  "version": "1.0.2",
   "description": "GitHub Action to Build Docker Image Meta",
   "keywords": [
     "action",
     "zmicro",
     "docker"
   ],
-  "repository": "https://github.com/whatwewant/action-build-docker-image-meta",
+  "repository": "https://github.com/whatwewant/action-docker-image-meta",
   "license": "MIT",
   "author": "Zero <tobewhatwewant@gmail.com>",
   "main": "dist/index.js",

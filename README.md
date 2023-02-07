@@ -1,7 +1,7 @@
 # GitHub Action to Build Docker Image Meta
 
-![https://github.com/zmicro-design/action-build-docker-image-meta](https://img.shields.io/github/v/release/zmicro-design/action-build-docker-image-meta)
-![https://github.com/zmicro-design/action-build-docker-image-meta](https://github.com/zmicro-design/action-build-docker-image-meta/workflows//Publish/badge.svg)
+![https://github.com/zmicro-design/action-docker-image-meta](https://img.shields.io/github/v/release/zmicro-design/action-docker-image-meta)
+![https://github.com/zmicro-design/action-docker-image-meta](https://github.com/zmicro-design/action-docker-image-meta/workflows//Publish/badge.svg)
 
 ### Usage
 
@@ -32,7 +32,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Build Docker Image Meta
-        uses: zmicro-design/action-build-docker-image-meta@v1
+        uses: zmicro-design/action-docker-image-meta@v1
 ```
 
 ### License
