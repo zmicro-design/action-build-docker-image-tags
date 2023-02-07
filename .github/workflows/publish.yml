@@ -18,7 +18,7 @@ jobs:
       - name: Get Release Info
         id: releaser
         run: |
-          version=$(echo ${GITHUB_REF} | sed -e "s%refs/meta/%%g")
+          version=$(echo ${GITHUB_REF} | sed -e "s%refs/tags/%%g")
           echo "version=${version}" >> $GITHUB_OUTPUT
 
       - name: Install and Build
