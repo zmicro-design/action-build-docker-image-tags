@@ -1,6 +1,6 @@
 {
   "name": "@zmicro-design/action-docker-image-meta",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "GitHub Action to Build Docker Image Meta",
   "keywords": [
     "action",
