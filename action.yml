@@ -11,6 +11,12 @@ inputs:
   version:
     required: false
     description: custom docker image version, default from git tag
+  prefix:
+    required: false
+    description: custom docker version prefix
+  suffix:
+    required: false
+    description: custom docker tag suffix, such as dind => v1.0.0-dind
   username:
     required: false
     description: custom docker registry username, default from github repository username
@@ -37,6 +43,8 @@ runs:
         USERNAME=${{ inputs.username }}
         IMAGE_NAME=${{ inputs.name }}
         IMAGE_VERSION=${{ inputs.version }}
+        IMAGE_PREFIX=${{ inputs.prefix }}
+        IMAGE_SUFFIX=${{ inputs.suffix }}
 
         if [ -z "$USERNAME" ]; then
           USERNAME=$(echo $GITHUB_REPOSITORY | awk -F "/" '{print $1}')
@@ -52,6 +60,12 @@ runs:
 
         IMAGE_FULL_NAME=${USERNAME}/${IMAGE_NAME}
         IMAGE_TAGS=$(tag::docker $IMAGE_FULL_NAME $IMAGE_VERSION)
+        if [ -n "$IMAGE_SUFFIX" ]; then
+          IMAGE_PREFIX="v"
+          IMAGE_TAGS=$(tag::docker $IMAGE_FULL_NAME $IMAGE_VERSION $IMAGE_PREFIX $IMAGE_SUFFIX)
+        else
+          IMAGE_TAGS=$(tag::docker $IMAGE_FULL_NAME $IMAGE_VERSION)
+        fi
 
         echo "name=${IMAGE_FULL_NAME}" >> $GITHUB_OUTPUT
         echo "tags=${IMAGE_TAGS}" >> $GITHUB_OUTPUT
