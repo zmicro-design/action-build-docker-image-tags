@@ -72,4 +72,5 @@ runs:
         fi
 
         echo "name=${IMAGE_FULL_NAME}" >> $GITHUB_OUTPUT
+        echo "version=${IMAGE_VERSION}" >> $GITHUB_OUTPUT
         echo "tags=${IMAGE_TAGS}" >> $GITHUB_OUTPUT
