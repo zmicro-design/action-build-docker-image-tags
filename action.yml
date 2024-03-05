@@ -30,6 +30,10 @@ outputs:
     description: 'Image Tags'
     value: ${{ steps.meta.outputs.tags }}
 
+  version:
+    description: 'Version'
+    value: ${{ steps.meta.outputs.version }}
+
 runs:
   using: composite
   steps:
